@@ -38,7 +38,7 @@ function updateTime(current) {
   }
   let minutes = current.getMinutes();
   if (minutes < 10) {
-    minutes = `0 ${minutes}`;
+    minutes = `0${minutes}`;
   }
 
   currentTime.innerHTML = `${hours}:${minutes}`;
