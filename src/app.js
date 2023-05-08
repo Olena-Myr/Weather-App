@@ -38,7 +38,7 @@ function updateTime(current) {
   }
   let minutes = current.getMinutes();
   if (minutes < 10) {
-    minutes = `0 ${minutes}`;
+    minutes = `0${minutes}`;
   }
 
   currentTime.innerHTML = `${hours}:${minutes}`;
@@ -67,15 +67,15 @@ function updateTime(current) {
 }
 
 updateTime(now);
-
+// navigator.geolocation.getCurrentPosition(searchCurrentLocation);
 //-------------------------------------------
 
 function search(event) {
   event.preventDefault();
-  let cityElement = document.getElementById("city");
+  //let cityElement = document.getElementById("city");
   let cityInput = document.getElementById("city-input");
-  cityElement.innerHTML = `${cityInput.value}`;
-  showCity();
+  //cityElement.innerHTML = `${cityInput.value}`;
+  showCity(cityInput.value);
 }
 
 let searchForm = document.getElementById("search-form");
@@ -83,15 +83,12 @@ searchForm.addEventListener("submit", search);
 
 //-------------------------------------------
 
-function showCity() {
-  let cityElement = document.getElementById("city");
-  let currentCity = cityElement.value;
-  let cityInput = document.getElementById("city-input");
-  cityElement.innerHTML = currentCity;
+function showCity(city) {
+  //let cityInput = document.getElementById("city-input");
   let units = "metric";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = `fa5c04fcd52f60b7d8fbbddf71d60ae5`;
-  let apiUrl = `${apiEndpoint}?q=${cityInput.value}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showTemperature);
 }
@@ -102,7 +99,7 @@ function searchCurrentLocation(position) {
   let units = "metric";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = `fa5c04fcd52f60b7d8fbbddf71d60ae5`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  let apiUrl = `${apiEndpoint}?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(showTemperature);
 }
 
@@ -124,13 +121,59 @@ function showTemperature(response) {
     response.data.main.temp
   );
 
-  //document.querySelector(`#temperature-description`).innerHTML =
-  //response.data.weather[0].main;
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 
+  //document.querySelector(`#temperature-description`).innerHTML = response.data.weather[0].main;
   document.getElementById("humidity").innerHTML = response.data.main.humidity;
   document.getElementById("wind").innerHTML = Math.round(
     response.data.wind.speed
   );
   updateTime(timeWithTimezone(response.data.timezone));
   document.getElementById("city-input").value = "";
+  let iconElement = document.getElementById("icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
+//change unit
+function CtoF(C) {
+  return (9 / 5) * C + 32;
+}
+function FtoC(F) {
+  return (5 / 9) * (F - 32);
+}
+
+//thanks to my Mentor!
+function updateTemperatureValue(func) {
+  let temperatureElement = document.getElementById("temp");
+  let v = parseFloat(temperatureElement.innerHTML);
+  console.log(v);
+  temperatureElement.innerHTML = Math.round(func(v));
+}
+
+//MATTa
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  updateTemperatureValue(CtoF);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  updateTemperatureValue(FtoC);
+}
+
+let fahrenheitLink = document.getElementById("fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.getElementById("celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+showCity("Warszawa");
