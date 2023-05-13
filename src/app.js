@@ -17,6 +17,31 @@ let day = days[now.getDay()];
 
 currentDay.innerHTML = `${day}, `;
 
+//forecast
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.getElementById("forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+      <div class="weather-forecast-date">${day}
+      </div>
+        <img src=https://openweathermap.org/img/wn/50d@2x.png alt="" width="54" class=""/>
+      <div class="weather-forecast-temperature">
+        <span class="weather-forecast-temperature-max">5° </span>
+        <span class="weather-forecast-temperature-min">10° </span>
+      </div>
+    </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //time in other cities (GPT helped :)  )
 function timeWithTimezone(timezone) {
   const date = new Date();
@@ -98,7 +123,7 @@ function searchCurrentLocation(position) {
   let lat = position.coords.latitude;
   let units = "metric";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let apiKey = `fa5c04fcd52f60b7d8fbbddf71d60ae5`;
+  let apiKey = `cf6b50b908fa2e0baca3eed8a569a5f6`;
   let apiUrl = `${apiEndpoint}?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(showTemperature);
 }
@@ -110,6 +135,13 @@ function getCurrentLocation(event) {
 
 let currentLocationButton = document.getElementById("current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = `57b2c40fdae71a6ba41d72685e3226e2`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 //-------------------------------------------
 
@@ -137,6 +169,8 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 //change unit

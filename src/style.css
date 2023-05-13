@@ -18,6 +18,21 @@ ul {
   margin-top: 20px;
 }
 
+.weather-forecast {
+  font-size: 20px;
+  text-align: center;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.weather-forecast-date {
+  opacity: 0.6;
+}
+
+.weather-forecast-temperature-min {
+  opacity: 0.6;
+}
+
 .mainborder {
   border: 1px solid #707070;
   padding: 20px;

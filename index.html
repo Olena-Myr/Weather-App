@@ -23,125 +23,102 @@
   <body>
     <div class="container">
       <div class="mainborder">
-    <h1>Weather Forecast</h1>
+        <h1>Weather Forecast</h1>
 
-
-<form id="search-form">
-  <div class="input-group">
-  <input type="text" 
-  class="form-control" 
-  id="city-input" 
-  placeholder="Enter a city" 
-  autofocus="on" 
-  aria-label="Recipient's username with two button addons">
-  <button class="btn btn-outline-secondary" 
-  type="submit" 
-  id="searchCity">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-  <button class="btn btn-outline-secondary" 
-  id="current-location-button"
-  type="button">Use current location
-</button>
-</div>
-</form>
-
-
-    <div class="row">
-      <div class="col-4">
-        <ul>
-          <li>
-            <h2 id="city">Warszawa</h2>
-          </li>
-          <li>
-            <span id="day">Monday</span>
-            <span id="time">12:00</span>
-          </li>
-          <li id="date">April,07 2023</li>
-        </ul>
+        <form id="search-form">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="city-input"
+              placeholder="Enter a city"
+              autofocus="on"
+              aria-label="Recipient's username with two button addons"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="submit"
+              id="searchCity"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button
+              class="btn btn-outline-secondary"
+              id="current-location-button"
+              type="button"
+            >
+              Use current location
+            </button>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-4">
+            <ul>
+              <li>
+                <h2 id="city">Warszawa</h2>
+              </li>
+              <li>
+                <span id="day">Monday</span>
+                <span id="time">12:00</span>
+              </li>
+              <li id="date">April,07 2023</li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <ul>
+              <li>
+                <img id="icon" width="60" />
+              </li>
+              <li>
+                <span>Humidity:</span>
+                <span id="humidity">70</span>
+                <span>%</span>
+              </li>
+              <li>
+                <span>Wind:</span>
+                <span id="wind">7</span>
+                <span>km/h</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <ul>
+              <li>
+                <span class="temperature" id="temp">15 </span>
+                <span class="units">
+                  <a href="#" id="celsius" class="active">°C </a>
+                  |
+                  <a href="#" id="fahrenheit" class="passive">°F </a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="weather-forecast" id="forecast"></div>
       </div>
-      <div class="col-4">
-        <ul>
-          <li>
-            <img id="icon"/>
-          </li>
-          <li>
-            <span>Humidity:</span>
-            <span id="humidity">70</span>
-            <span>%</span>
-          </li>
-          <li>
-            <span>Wind:</span>
-            <span id="wind">7</span>
-            <span>km/h</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-4">
-        <ul>
-          <li>
-            <span class="temperature" 
-            id="temp">15
-          </span>
-          <span class="units">
-            <a href="#" id="celsius" class="active">°C
-            </a>
-            |
-            <a href="#" id="fahrenheit" class="passive">°F
-            </a>
-          </span>
-        </li>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-2">
-        <ul>
-          <li>Tuesday</li>
-          <li><i class="fa-solid fa-cloud-sun"></i></li>
-          <li>15°C</li>
-        </ul>
-      </div>
-      <div class="col-2">
-        <ul>
-          <li>Tuesday</li>
-          <li><i class="fa-solid fa-cloud-sun"></i></li>
-          <li>15°C</li>
-        </ul>
-      </div>
-      <div class="col-2">
-        <ul>
-          <li>Tuesday</li>
-          <li><i class="fa-solid fa-cloud-sun"></i></li>
-          <li>15°C</li>
-        </ul>
-      </div>
-      <div class="col-2">
-        <ul>
-          <li>Tuesday</li>
-          <li><i class="fa-solid fa-cloud-sun"></i></li>
-          <li>15°C</li>
-        </ul>
-      </div>
-      <div class="col-2">
-        <ul>
-          <li>Tuesday</li>
-          <li><i class="fa-solid fa-cloud-sun"></i></li>
-          <li>15°C</li>
-        </ul>
-      </div>
-      <div class="col-1"></div>
     </div>
     <hr />
-    This project was coded by 
-    <a href="https://www.linkedin.com/in/olena-myronenko-ua/" target="blank" class="footer">Olena Myronenko</a>
-    ans is 
-    <a href="https://github.com/Olena-Myr/Weather-App" target="blank" class="footer">open-sourced on GitHub</a>
-     and 
-    <a href="https://lustrous-mousse-886af3.netlify.app/" target="blank" class="footer">hosted on Netlify</a>
-    </div>
-    </div>
+    This project was coded by
+    <a
+      href="https://www.linkedin.com/in/olena-myronenko-ua/"
+      target="blank"
+      class="footer"
+      >Olena Myronenko</a
+    >
+    ans is
+    <a
+      href="https://github.com/Olena-Myr/Weather-App"
+      target="blank"
+      class="footer"
+      >open-sourced on GitHub</a
+    >
+    and
+    <a
+      href="https://lustrous-mousse-886af3.netlify.app/"
+      target="blank"
+      class="footer"
+      >hosted on Netlify</a
+    >
     <script src="src/app.js"></script>
     <script
       src="https://kit.fontawesome.com/0524e1b954.js"
